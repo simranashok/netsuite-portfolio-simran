@@ -22,6 +22,15 @@ placeholders, not real configuration.
 | [`integrations/SFTP_VendorFileIntegration.js`](integrations/SFTP_VendorFileIntegration.js) | Library module | Reusable SFTP connect/download/parse/upload helper |
 | [`utils/JournalEntryUtil.js`](utils/JournalEntryUtil.js) | Library module | Shared standard & amortization journal entry creation logic |
 
+## Projects
+
+Multi-script projects that demonstrate one real workflow end to end live
+under `projects/`, separate from the per-script-type samples above:
+
+| Project | Demonstrates |
+|---|---|
+| [`projects/mass-je-approval/`](projects/mass-je-approval/README.md) | Search/filter Suitelet → async Map/Reduce approval batch (via `N/task`) → progress-polling/results Suitelet |
+
 ## How the pieces connect
 
 - `MR_RevenueAmortizationProcessor` and `UE_AmortizationInvoiceValidation` both

@@ -4,12 +4,13 @@
  *
  * CS_MassJEApproval
  * --------------------
- * Client-side behavior for SL_MassJEApproval's search/results page: Mark
+ * Client-side behavior for SL_MassJEApproval's search/filter page: Mark
  * All / Unmark All over the pending-JE sublist, plus the Refresh and
  * Approve buttons. The Suitelet only has one native submit button, so
  * Refresh and Approve are custom buttons that set a hidden action flag
  * and submit the form themselves rather than each needing a server round
- * trip just to know which button was clicked.
+ * trip just to know which button was clicked. A successful Approve
+ * redirects server-side to SL_MassJEApprovalResults for progress/results.
  *
  * Reference/illustrative implementation written to demonstrate the
  * pattern — not derived from any employer or client codebase.

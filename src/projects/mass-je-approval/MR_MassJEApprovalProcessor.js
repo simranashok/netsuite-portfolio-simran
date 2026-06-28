@@ -10,7 +10,8 @@
  * governance/timeout limits. Each JE is an independent update with nothing
  * to aggregate across records, so this intentionally skips the reduce
  * stage — map + summarize is the right shape here, not a 4-stage pattern
- * for its own sake.
+ * for its own sake. Results are cached for SL_MassJEApprovalResults to
+ * read once the task completes.
  *
  * Reference/illustrative implementation written to demonstrate the
  * pattern — not derived from any employer or client codebase.
