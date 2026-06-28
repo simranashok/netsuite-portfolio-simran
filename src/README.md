@@ -30,6 +30,7 @@ under `projects/`, separate from the per-script-type samples above:
 | Project | Demonstrates |
 |---|---|
 | [`projects/mass-je-approval/`](projects/mass-je-approval/README.md) | Search/filter Suitelet → async Map/Reduce approval batch (via `N/task`) → progress-polling/results Suitelet |
+| [`projects/so-landed-cost-assignment/`](projects/so-landed-cost-assignment/README.md) | User Event chain (subsidiary → location → template → item) assigning a Landed Cost Template at the SO line level |
 
 ## How the pieces connect
 
