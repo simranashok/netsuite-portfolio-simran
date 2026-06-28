@@ -64,12 +64,22 @@ engagement.
 
 ## Certifications
 
-| Certification | Platform |
-|---|---|
-| Oracle NetSuite Certified SuiteFoundation Specialist | NetSuite |
-| Oracle NetSuite Certified AI Foundations Associate | NetSuite |
-| Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate | Oracle Cloud Infrastructure |
-| Oracle Cloud Infrastructure 2025 Certified Generative AI Professional | Oracle Cloud Infrastructure |
+### NetSuite
+
+- NetSuite Certified SuiteFoundation Specialist
+- NetSuite Certified ERP Consultant Professional
+- NetSuite Certified Application Developer Professional
+- NetSuite Certified SuiteCloud Developer Professional
+- NetSuite Certified Web Services Developer Professional
+- NetSuite Certified Administrator Professional
+- NetSuite Certified AI Foundations Associate
+
+### Oracle Cloud & Other
+
+- Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate
+- Oracle Cloud Infrastructure 2025 Certified Generative AI Professional
+- Oracle CPQ 2026 Certified Implementation Professional
+- Oracle Certified Professional, Java EE 7 Application Developer
 
 ## Connect
 
