@@ -4,11 +4,12 @@
  *
  * CS_MassJEApproval
  * --------------------
- * Client-side behavior for SL_MassJEApproval's search/filter page: Mark
- * All / Unmark All over the pending-JE sublist, plus the Refresh and
- * Approve buttons. The Suitelet only has one native submit button, so
- * Refresh and Approve are custom buttons that set a hidden action flag
- * and submit the form themselves rather than each needing a server round
+ * Client-side behavior for SL_MassJEApproval's search/filter page: the
+ * Reset and Approve buttons. Mark All / Unmark All are handled natively
+ * by the sublist's addMarkAllButtons(), so no client script is needed for
+ * those. The Suitelet only has one native submit button (Search), so
+ * Reset and Approve are custom buttons that set a hidden action flag and
+ * submit the form themselves rather than each needing a server round
  * trip just to know which button was clicked. A successful Approve
  * redirects server-side to SL_MassJEApprovalResults for progress/results.
  *
@@ -20,17 +21,12 @@ define(['N/currentRecord'], (currentRecord) => {
     const SUBLIST_ID = 'pendingje';
     const MARK_FIELD_ID = 'mark';
     const ACTION_FIELD_ID = 'custpage_action';
+    const FILTER_FIELD_IDS = ['custpage_datefrom', 'custpage_dateto', 'custpage_subsidiary', 'custpage_name'];
 
-    function markAll() {
-        setAllMarks(true);
-    }
-
-    function unmarkAll() {
-        setAllMarks(false);
-    }
-
-    function triggerRefresh() {
-        submitWithAction('refresh');
+    function triggerReset() {
+        const rec = currentRecord.get();
+        FILTER_FIELD_IDS.forEach((fieldId) => rec.setValue({ fieldId, value: '' }));
+        submitWithAction('reset');
     }
 
     function triggerApprove() {
@@ -53,22 +49,11 @@ define(['N/currentRecord'], (currentRecord) => {
         submitWithAction('approve');
     }
 
-    function setAllMarks(value) {
-        const rec = currentRecord.get();
-        const lineCount = rec.getLineCount({ sublistId: SUBLIST_ID });
-
-        for (let line = 0; line < lineCount; line += 1) {
-            rec.selectLine({ sublistId: SUBLIST_ID, line });
-            rec.setCurrentSublistValue({ sublistId: SUBLIST_ID, fieldId: MARK_FIELD_ID, value });
-            rec.commitLine({ sublistId: SUBLIST_ID });
-        }
-    }
-
     function submitWithAction(action) {
         const rec = currentRecord.get();
         rec.setValue({ fieldId: ACTION_FIELD_ID, value: action });
         document.forms[0].submit();
     }
 
-    return { markAll, unmarkAll, triggerRefresh, triggerApprove };
+    return { triggerReset, triggerApprove };
 });

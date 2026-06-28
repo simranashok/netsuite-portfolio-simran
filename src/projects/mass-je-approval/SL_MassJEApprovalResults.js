@@ -11,20 +11,32 @@
  * results written by the Map/Reduce summarize stage and lists each journal
  * entry with a link back to the record.
  *
+ * Reachable only by URL (with a taskid/batchid), so it re-checks the same
+ * "Approve Journal Entries" permission as SL_MassJEApproval rather than
+ * relying on the user having passed through that page first.
+ *
  * Reference/illustrative implementation written to demonstrate the
  * pattern — not derived from any employer or client codebase.
  */
-define(['N/ui/serverWidget', 'N/task', 'N/cache', 'N/url', 'N/runtime', 'N/record'],
-    (serverWidget, task, cache, url, runtime, record) => {
+define(['N/ui/serverWidget', 'N/ui/message', 'N/task', 'N/cache', 'N/url', 'N/runtime', 'N/record'],
+    (serverWidget, message, task, cache, url, runtime, record) => {
 
     const CACHE_NAME = 'mass_je_approval';
     const REFRESH_SECONDS = 5;
+
+    // Representative placeholder — same permission id used by SL_MassJEApproval.
+    const APPROVE_JE_PERMISSION = 'TRAN_JOURNALAPPROVAL';
 
     // Placeholder script/deployment id for SL_MassJEApproval, used for the "back to search" link.
     const SEARCH_SCRIPT_ID = 'customscript_sl_mjea_search';
     const SEARCH_DEPLOYMENT_ID = 'customdeploy_sl_mjea_search';
 
     function onRequest(context) {
+        if (runtime.getCurrentUser().getPermission({ name: APPROVE_JE_PERMISSION }) === runtime.Permission.NONE) {
+            renderAccessDenied(context);
+            return;
+        }
+
         const taskId = context.request.parameters.taskid;
         const batchId = context.request.parameters.batchid;
         const status = task.checkStatus({ taskId }).status;
@@ -36,6 +48,16 @@ define(['N/ui/serverWidget', 'N/task', 'N/cache', 'N/url', 'N/runtime', 'N/recor
         } else {
             renderProcessing(context, taskId, batchId);
         }
+    }
+
+    function renderAccessDenied(context) {
+        const form = serverWidget.createForm({ title: 'Mass JE Approval' });
+        form.addPageInitMessage({
+            type: message.Type.WARNING,
+            title: 'Access Denied',
+            message: 'You do not have access to this Suitelet. Contact your administrator if you need the Approve Journal Entries permission.'
+        });
+        context.response.writePage(form);
     }
 
     function renderProcessing(context, taskId, batchId) {
