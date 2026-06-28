@@ -49,6 +49,19 @@ I work as a NetSuite Principal Developer/Consultant, owning the full lifecycle o
 - Owns the complete project lifecycle: requirements, design, build, test, deployment
 - Deep working knowledge of NetSuite navigation and configuration across modules
 
+## Code Samples
+
+The [`src/`](src/) directory contains a small SuiteScript 2.1 library covering
+every script type and integration pattern above — User Event, Client Script,
+Scheduled Script, Map/Reduce, Suitelet, and RESTlet, plus reusable SFTP and
+Pagero connector modules and a shared journal entry utility consumed by the
+amortization flow. See [`src/README.md`](src/README.md) for the full index
+and how the pieces connect.
+
+These are original, illustrative reference implementations written to
+demonstrate the patterns — not code copied from any employer or client
+engagement.
+
 ## Certifications
 
 _Section in progress — certification details to be added._
